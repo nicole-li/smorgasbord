@@ -15,7 +15,7 @@ var routes = require('./routes.js');
 // var auth = require('./auth.js');
 
 var app = express();
-// const server = require('http').Server(app);
+const server = require('http').Server(app);
 // const io = require('socket.io')(server);
 
 // app.use(express.static(path.join(__dirname, 'public')));

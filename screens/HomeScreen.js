@@ -49,15 +49,12 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-    this.mounted = true;
     AsyncStorage.getAllKeys()
     .then(result => {
       // console.log(result);
-      if (this.mounted) {
-        this.setState({
-          keys: result
-        });
-      }
+      this.setState({
+        keys: result
+      });
       // console.log(this.state.keys);
     })
     .then(() => {
@@ -68,10 +65,6 @@ export default class HomeScreen extends React.Component {
         });
       })
     })
-  }
-
-  componentWillUnmount(){
-    this.mounted = false;
   }
 
   deletePost(key) {
@@ -107,7 +100,8 @@ export default class HomeScreen extends React.Component {
 
               <TouchableOpacity>
                 <Text onPress={() => {
-                  this.props.navigation.navigate('Write', { name: this.state.title });
+                  // this.props.navigation.navigate('Write', { name: this.state.title });
+                  // AsyncStorage.setItem(this.state.title, JSON.stringify({text:'Start'}))
                   this.setModalVisible(false);
                 }}>Go</Text>
               </TouchableOpacity>
@@ -141,14 +135,6 @@ export default class HomeScreen extends React.Component {
                 }}> + New Page</Text>
             </TouchableOpacity>
           </View>
-
-          {this.state.multiGet.map(set =>
-            <Display
-              key={this.state.multiGet.indexOf(set)}
-              title={set[0]}
-              body={JSON.parse(set[1]).text}
-              del={(key) => this.deletePost(key)}
-              />)}
 
         </ScrollView>
       </View>
